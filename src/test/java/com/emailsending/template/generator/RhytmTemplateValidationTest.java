@@ -1,12 +1,10 @@
 package com.emailsending.template.generator;
 
-import junit.framework.Assert;
-
 import org.junit.Test;
 
 import com.emailsending.template.TemplateDataExtractor;
 
-public class RhytmTemplateGeneratorTest extends AbstractTemplateGeneratorTest {
+public class RhytmTemplateValidationTest extends AbstractTemplateValidationTest {
 
     private static final String templateFileName = "Template.rythm";
 
@@ -18,6 +16,6 @@ public class RhytmTemplateGeneratorTest extends AbstractTemplateGeneratorTest {
 
         String generatedString = mustacheTemplateGenerator.generate();
         
-        Assert.assertEquals(templateSource, generatedString);
+        assertEqualsIgnoreWhitespaces(templateSource, generatedString);
     }
 }

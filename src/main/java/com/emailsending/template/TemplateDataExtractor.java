@@ -19,7 +19,9 @@ public class TemplateDataExtractor {
 
     private static final String templateSourceFileName = "Template.Source.html";
     private static final String dataFileName = "Data.txt";
-    private static final String dataFilePathInSrc = "../../src/main/resources/" + dataFileName;
+    private static final String dataFilePathInSrc = "/../../src/main/resources/" + dataFileName;
+    
+    private static final String lineEnding = System.getProperty("line.separator");
 
     public static List<String> readData() {
 
@@ -60,8 +62,7 @@ public class TemplateDataExtractor {
         FileWriter writer = null;
 
         try {
-            final String dataFilePath = new File(ClassLoader.getSystemResource(templateSourceFileName).getPath()).getParent() + "/"
-                    + dataFilePathInSrc;
+            final String dataFilePath = new File(ClassLoader.getSystemResource(templateSourceFileName).getPath()).getParent() + dataFilePathInSrc;
 
             writer = new FileWriter(dataFilePath);
             logger.debug("writing to {}", dataFilePath);
@@ -80,6 +81,7 @@ public class TemplateDataExtractor {
                     String lineToWrite = matcher.group(2);
                     logger.debug("line written", lineToWrite);
                     writer.write(lineToWrite);
+                    writer.write(lineEnding);
                 }
             } while (lineRead != null);
 

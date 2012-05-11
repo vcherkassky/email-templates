@@ -1,12 +1,10 @@
 package com.emailsending.template.generator;
 
-import junit.framework.Assert;
-
 import org.junit.Test;
 
 import com.emailsending.template.TemplateDataExtractor;
 
-public class MustacheTemplateGeneratorTest extends AbstractTemplateGeneratorTest {
+public class MustacheTemplateValidationTest extends AbstractTemplateValidationTest {
 
     private static final String templateFileName = "Template.mustache";
 
@@ -18,6 +16,6 @@ public class MustacheTemplateGeneratorTest extends AbstractTemplateGeneratorTest
 
         String generatedString = mustacheTemplateGenerator.generate();
         
-        Assert.assertEquals(templateSource, generatedString);
+        assertEqualsIgnoreWhitespaces(templateSource, generatedString);
     }
 }
