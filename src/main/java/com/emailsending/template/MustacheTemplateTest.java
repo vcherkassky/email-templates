@@ -2,6 +2,7 @@ package com.emailsending.template;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,13 +20,15 @@ public class MustacheTemplateTest {
 
     public static void main(String[] args) throws IOException {
 
-        TemplateGenerator mustacheTemplateGenerator = TemplateGeneratorFactory.getMustacheTemplateGenerator(
-                TemplateDataExtractor.readData(), templateFileName);
+        List<String> data = TemplateDataExtractor.readData();
+        
+       TemplateGenerator mustacheTemplateGenerator = TemplateGeneratorFactory.getMustacheTemplateGenerator(data, templateFileName);
 
         long lStartTime = new Date().getTime(); // start time
 
         for (int i = 0; i < numberOfTemplatesToGenerate; i++) {
-            String generatedTemplate = mustacheTemplateGenerator.generate();
+           @SuppressWarnings("unused")
+           String generatedString = mustacheTemplateGenerator.generate();
         }
 
         long lEndTime = new Date().getTime(); // end time

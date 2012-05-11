@@ -14,13 +14,13 @@ public class RythmTemplateTest {
 
     private static final Logger logger = LoggerFactory.getLogger(RythmTemplateTest.class);
 
-    private static final String templateFileName = "Template.rythm";
-
     private static final int numberOfTemplatesToGenerate = 100000;
+
+    private static final String templateFileName = "Template.rythm";
 
     public static void main(String[] args) throws URISyntaxException, IOException {
 
-        TemplateGenerator rythmTemplateGenerator = TemplateGeneratorFactory.getMustacheTemplateGenerator(TemplateDataExtractor.readData(),
+        TemplateGenerator rythmTemplateGenerator = TemplateGeneratorFactory.getRythmTemplateGenerator(TemplateDataExtractor.readData(),
                 templateFileName);
 
         long lStartTime = new Date().getTime(); // start time

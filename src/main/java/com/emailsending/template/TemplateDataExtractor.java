@@ -24,7 +24,7 @@ public class TemplateDataExtractor {
     public static List<String> readData() {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream(dataFileName)));
-        List<String> result = new ArrayList<String>(38);
+        List<String> result = new ArrayList<String>(37);
         String lineRead = null;
         try {
             do {
@@ -77,7 +77,7 @@ public class TemplateDataExtractor {
                 Matcher matcher = pattern.matcher(lineRead);
                 while (matcher.find()) {
 
-                    String lineToWrite = matcher.group(2) + '\n';
+                    String lineToWrite = matcher.group(2);
                     logger.debug("line written", lineToWrite);
                     writer.write(lineToWrite);
                 }

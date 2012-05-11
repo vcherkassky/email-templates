@@ -88,7 +88,8 @@ public class TemplateGeneratorComparizonTest {
         long startTimeNano = System.nanoTime();
 
         for (int i = 0; i < numberOfTemplatesToGenerateEachTime; i++) {
-            String generatedTemplate = generator.generate();
+            @SuppressWarnings("unused")
+            String generatedString = generator.generate();
         }
 
         return System.nanoTime() - startTimeNano;
