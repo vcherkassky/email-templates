@@ -1,4 +1,4 @@
-package com.emailsending.template;
+package com.emailsending.template.performance;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.emailsending.template.TemplateDataExtractor;
 import com.emailsending.template.generator.TemplateGenerator;
 import com.emailsending.template.generator.TemplateGeneratorFactory;
 

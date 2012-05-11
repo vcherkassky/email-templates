@@ -1,4 +1,4 @@
-package com.emailsending.template;
+package com.emailsending.template.performance;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -7,6 +7,7 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.emailsending.template.TemplateDataExtractor;
 import com.emailsending.template.generator.TemplateGenerator;
 import com.emailsending.template.generator.TemplateGeneratorFactory;
 
