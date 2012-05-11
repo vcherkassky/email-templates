@@ -29,13 +29,13 @@ public abstract class AbstractTemplateValidationTest {
         BufferedReader reader = new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream(templateSourceFileName)));
         StringBuilder sb = new StringBuilder();
         try {
-            String lineRead = null;
-            do {
-                lineRead = reader.readLine();
-                if(lineRead != null && lineRead.trim().isEmpty())
-                    break;
+            String lineRead = reader.readLine();
+            while (lineRead != null) {
+                
                 sb.append(lineRead).append(lineEnding);
-            } while (lineRead != null);
+                
+                lineRead = reader.readLine();
+           }
         } catch (IOException e) {
             logger.error("Error occured while reading file", e);
         } finally {
@@ -72,7 +72,8 @@ public abstract class AbstractTemplateValidationTest {
      */
     protected static boolean equalStringsIgnoreWhitespaces(String expected, String actual) {
         
-        for(int i = 0, j = 0; i < expected.length() && j < actual.length();) {
+        int i = 0, j = 0; 
+        while(i < expected.length() && j < actual.length()) {
             char e = expected.charAt(i);
             if(e == '\n' || e == '\r' || e == '\t' || e == ' ') {
                 i++;
@@ -91,6 +92,30 @@ public abstract class AbstractTemplateValidationTest {
             } else
                 return false;
         }
+        
+        // Now we can have one string ended and another one is not ended yet
+        // Just check that the rest of characters in not ended string are all whitespaces
+        String notEndedString = null;
+        int notEndedStringIndex = 0;
+        
+        if(i < expected.length()) {
+            notEndedString = expected;
+            notEndedStringIndex = i;
+        } else if(j < actual.length()) {
+            notEndedString = actual;
+            notEndedStringIndex = j;
+        }
+        
+        if(notEndedString != null)
+            while(notEndedStringIndex < notEndedString.length()) {
+                
+                char n = notEndedString.charAt(notEndedStringIndex);
+                if(n == '\n' || n == '\r' || n == '\t' || n == ' ') {
+                    notEndedStringIndex++;
+                    continue;
+                }
+                return false;
+            }
         
         return true;
     }

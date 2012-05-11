@@ -27,19 +27,15 @@ public class TemplateDataExtractor {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream(dataFileName)));
         List<String> result = new ArrayList<String>(37);
-        String lineRead = null;
         try {
-            do {
-
-                lineRead = reader.readLine();
-
-                if (lineRead != null && lineRead.trim().isEmpty())
-                    break;
+            String lineRead = reader.readLine();
+            while (lineRead != null) {
 
                 result.add(lineRead);
 
-            } while (lineRead != null);
-
+                lineRead = reader.readLine();
+           }
+            
         } catch (IOException e) {
             logger.error("error occured", e);
         } finally {
@@ -67,13 +63,8 @@ public class TemplateDataExtractor {
             writer = new FileWriter(dataFilePath);
             logger.debug("writing to {}", dataFilePath);
 
-            String lineRead = null;
-            do {
-
-                lineRead = reader.readLine();
-
-                if (lineRead != null && lineRead.trim().isEmpty())
-                    break;
+            String lineRead = reader.readLine();
+            while (lineRead != null) {
 
                 Matcher matcher = pattern.matcher(lineRead);
                 while (matcher.find()) {
@@ -83,7 +74,9 @@ public class TemplateDataExtractor {
                     writer.write(lineToWrite);
                     writer.write(lineEnding);
                 }
-            } while (lineRead != null);
+                
+                lineRead = reader.readLine();
+           }
 
         } catch (IOException e) {
             logger.error("error occured", e);
